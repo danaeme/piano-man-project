@@ -1,0 +1,77 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: white;
+    height: 250px;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0;
+}
+
+.box {
+    text-align: center;
+    background-color: darkgray;
+    padding: 20px;
+    border: 2px grey;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 800px;
+    box-shadow: 0 0 10px black;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.score-display {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 20px;
+    padding: 10px 20px;
+    border: 2px solid lightgray;
+    border-radius: 10px;
+}
+
+.message {
+    margin: 20px 0;
+    font-size: 20px;
+    padding: 10px 20px;
+}
+
+.piano {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.key {
+    width: 50px;
+    height: 150px;
+    margin: 0 5px;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.control-button {
+    width: 100px;
+    height: 50px;
+    border: 2px white;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#start {
+    background-color: #d3d3d3;
+}
