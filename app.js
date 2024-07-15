@@ -56,7 +56,8 @@ function disableResetButton() {
 }
 
 function playSound(note) {
-    const audio = new Audio();
+    const audio = new Audio(`../audio/${note}.mp3`);
+    audio.volume = 1.5;
     audio.play();
     console.log(`Note played: ${note}`);
 }
@@ -87,3 +88,7 @@ function keyClick(event) {
 
 /*----------- Event Listeners ----------*/
 // document.querySelector('.piano').addEventListener()
+
+// const audio = new Audio(`../audio/C.mp3`);
+//     audio.volume = 3;
+//     audio.play();
