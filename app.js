@@ -27,7 +27,7 @@ function startGame() {
     userIsPlaying = false;
     startButton.disabled = false;
     resetButton.disabled = true; 
-    console.log('Initializing game..');
+   // console.log('Initializing game..');
 }
 
 function updateScore() {
@@ -47,6 +47,11 @@ function playSound(note) {
 
 function flashKey(note) {
     //function to make key flash. 
+    const key = keys.find(key => key.textContent === note);
+    if (key) {
+        key.classList.add('active');
+        setTimeout(() => key.classList.remove('active'), 1000);
+    }
 }
 
 function computerTurn() {
@@ -59,9 +64,9 @@ function computerTurn() {
     compSequence.forEach((note, index) => {
         setTimeout (() => {
             playSound(note);
+            flashKey(note);
         }, index * 1000);
     });
-    //set userIsPlaying back to true
     setTimeout(() => {
         keys.forEach(key => key.disabled = false);
         userIsPlaying = true;
@@ -71,7 +76,8 @@ function computerTurn() {
 function keyClick(event) {
     if (!userIsPlaying || !event.target.classList.contains('key')){
         return;
-    }   else {
+    }   
+    else {
         const note = event.target.textContent.trim(); //trim to get 'note' from text
         playSound(note);
         userSequence.push(note);
@@ -79,9 +85,8 @@ function keyClick(event) {
         const noteIdx = userSequence.length - 1;
     
         if (userSequence[noteIdx] !== compSequence[noteIdx]) {
-            gameOverMessage();
+            gameOverMessage.style.display = 'block';
             keys.forEach(key => key.disabled = true);
-            return;
         }
     
         if (userSequence.length === compSequence.length) {
@@ -92,7 +97,7 @@ function keyClick(event) {
                 return;
             }
             userSequence = [];
-            setTimeout(computerTurn, 3000);
+            setTimeout(computerTurn, 2000);
         }
     }   
 
@@ -111,8 +116,6 @@ function keyClick(event) {
     });
     
     resetButton.addEventListener('click', startGame);
-    // const audio = new Audio(`../audio/${note}.mp3`);
-    //     audio.volume = 3;
-    //     audio.play();
-    //window.onload = startGame;
+
+    startGame();
 });
