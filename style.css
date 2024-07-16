@@ -2,8 +2,8 @@ body {
     font-family: 'Courier New', Courier, monospace;
     display: flex;
     background-color: lightgray;
-    height: 800px;
-    width: 1200px;
+    height: 100vh;
+    width: 100vw;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -16,7 +16,7 @@ body {
     padding: 20px;
     border: 2px grey;
     border-radius: 10px;
-    width: 80%;
+    width: 100vw;
     max-width: 800px;
     box-shadow: 0 0 10px black;
 }
