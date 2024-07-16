@@ -1,3 +1,4 @@
+document.addEventListener('DOMContentLoaded', () => {
 /*-------------- Constants -------------*/
 const notes = ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C2'];
 
@@ -8,7 +9,7 @@ let score = 0;
 let userIsPlaying = false; //if user turn is in progress
 
 /*----- Cached Element References  -----*/
-const keys = document.querySelector('.key');
+const keys = Array.from(document.querySelectorAll('.key')); 
 const startButton = document.querySelector('#start');
 const resetButton = document.querySelector('#reset');
 const scoreDisplay = document.querySelector('.score-display');
@@ -26,15 +27,19 @@ function startGame() {
     userIsPlaying = false;
     startButton.disabled = false;
     resetButton.disabled = true; 
-    //console.log('Initializing game..');
+    console.log('Initializing game..');
 }
 
 function updateScore() {
     scoreDisplay.textContent = `Score: ${score}/5`
 }
 
+function showGameOverMessage() {
+    gameOverMessage.style.display = 'block';
+}
+
 function playSound(note) {
-    const audio = new Audio(`/audio/${note}.mp3`);
+    const audio = new Audio(`../audio/${note}.mp3`);
     audio.volume = 1;
     audio.play();
     //console.log(`Note played: ${note}`);
@@ -54,7 +59,7 @@ function computerTurn() {
     compSequence.forEach((note, index) => {
         setTimeout (() => {
             playSound(note);
-        }, 1000);
+        }, index * 1000);
     });
     //set userIsPlaying back to true
     setTimeout(() => {
@@ -64,19 +69,51 @@ function computerTurn() {
 }
 
 function keyClick(event) {
-    //ignore if click is not on a key OR if it's the computer's turn
+    if (!userIsPlaying || !event.target.classList.contains('key')){
+        return;
+    }
 
-    //IF players turn:
-    //get the note associated with the clicked key
-    //play the sound for the clicked key
-    //PUSH it to user sequence
+    const note = event.target.textContent.trim(); //trim to get 'note' from text
+    playSound(note);
+    userSequence.push(note);
+
+    const noteIdx = userSequence.length - 1;
+
+    if (userSequence[noteIdx] !== compSequence[noteIdx]) {
+        gameOverMessage();
+        keys.forEach(key => key.disabled = true);
+        return;
+    }
+
+    if (userSequence.length === compSequence.length) {
+        score++;
+        updateScore();
+        if (score === 5) {
+            youWinMessage.style.display = 'block';
+            return;
+        }
+        
+        userSequence = [];
+        setTimeout(computerTurn, 3000);
+    }
+
 }
 
 
 
 /*----------- Event Listeners ----------*/
-document.querySelector('.piano').addEventListener('click', keyClick);
-
-// const audio = new Audio(`../audio/${note}.mp3`);
-//     audio.volume = 3;
-//     audio.play();
+    
+    document.querySelector('.piano').addEventListener('click', keyClick);
+    
+    startButton.addEventListener('click', () => {
+        startButton.disabled = true;
+        resetButton.disabled = false;
+        computerTurn();
+    });
+    
+    resetButton.addEventListener('click', startGame);
+    // const audio = new Audio(`../audio/${note}.mp3`);
+    //     audio.volume = 3;
+    //     audio.play();
+    //window.onload = startGame;
+});
