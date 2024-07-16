@@ -50,7 +50,7 @@ function flashKey(note) {
     const key = keys.find(key => key.textContent === note);
     if (key) {
         key.classList.add('active');
-        setTimeout(() => key.classList.remove('active'), 1000);
+        setTimeout(() => key.classList.remove('active'), 900);
     }
 }
 
@@ -87,20 +87,20 @@ function keyClick(event) {
         if (userSequence[noteIdx] !== compSequence[noteIdx]) {
             gameOverMessage.style.display = 'block';
             keys.forEach(key => key.disabled = true);
+            userIsPlaying = false;
         }
-    
-        if (userSequence.length === compSequence.length) {
+        else if (userSequence.length === compSequence.length) {
             score++;
             updateScore();
             if (score === 5) {
                 youWinMessage.style.display = 'block';
+                keys.forEach(key => key.disabled = true);
                 return;
             }
             userSequence = [];
             setTimeout(computerTurn, 2000);
         }
     }   
-
 }
 
 
