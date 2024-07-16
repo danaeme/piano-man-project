@@ -71,31 +71,30 @@ function computerTurn() {
 function keyClick(event) {
     if (!userIsPlaying || !event.target.classList.contains('key')){
         return;
-    }
-
-    const note = event.target.textContent.trim(); //trim to get 'note' from text
-    playSound(note);
-    userSequence.push(note);
-
-    const noteIdx = userSequence.length - 1;
-
-    if (userSequence[noteIdx] !== compSequence[noteIdx]) {
-        gameOverMessage();
-        keys.forEach(key => key.disabled = true);
-        return;
-    }
-
-    if (userSequence.length === compSequence.length) {
-        score++;
-        updateScore();
-        if (score === 5) {
-            youWinMessage.style.display = 'block';
+    }   else {
+        const note = event.target.textContent.trim(); //trim to get 'note' from text
+        playSound(note);
+        userSequence.push(note);
+    
+        const noteIdx = userSequence.length - 1;
+    
+        if (userSequence[noteIdx] !== compSequence[noteIdx]) {
+            gameOverMessage();
+            keys.forEach(key => key.disabled = true);
             return;
         }
-        
-        userSequence = [];
-        setTimeout(computerTurn, 3000);
-    }
+    
+        if (userSequence.length === compSequence.length) {
+            score++;
+            updateScore();
+            if (score === 5) {
+                youWinMessage.style.display = 'block';
+                return;
+            }
+            userSequence = [];
+            setTimeout(computerTurn, 3000);
+        }
+    }   
 
 }
 
