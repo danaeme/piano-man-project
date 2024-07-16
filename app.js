@@ -1,5 +1,5 @@
 /*-------------- Constants -------------*/
-const notes = ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C1'];
+const notes = ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C2'];
 
 /*---------- Variables (state) ---------*/
 let compSequence = [];
@@ -20,46 +20,24 @@ function startGame() {
     compSequence = [];
     userSequence = [];
     score = 0;
+    updateScore();
+    gameOverMessage.style.display = 'none';
+    youWinMessage.style.display = 'none';
     userIsPlaying = false;
-    console.log('Initializing game..');
-}
-
-function enableKeys() {
-    keys.forEach(element => {
-        element.disabled = false;
-    });
-    console.log('Enabled keys');
-}
-
-function disableKeys() {
-    keys.forEach(element => {
-        element.disabled = true;
-    })
-    console.log('Disabled keys');
-}
-
-function enableStartButton() {
     startButton.disabled = false;
-    console.log('Enabled Start Button');
+    resetButton.disabled = true; 
+    //console.log('Initializing game..');
 }
-function disableStartButton(){
-    startButton.disabled = true;
-    console.log('Disabled Start');
-}
-function enableResetButton() {
-    resetButton.disabled = false;
-    console.log('Reset enabled');
-}
-function disableResetButton() {
-    resetButton.disabled = true;
-    console.log('Reset disabled');
+
+function updateScore() {
+    scoreDisplay.textContent = `Score: ${score}/5`
 }
 
 function playSound(note) {
-    const audio = new Audio(`../audio/${note}.mp3`);
-    audio.volume = 1.5;
+    const audio = new Audio(`/audio/${note}.mp3`);
+    audio.volume = 1;
     audio.play();
-    console.log(`Note played: ${note}`);
+    //console.log(`Note played: ${note}`);
 }
 
 function flashKey(note) {
@@ -68,9 +46,21 @@ function flashKey(note) {
 
 function computerTurn() {
     userIsPlaying = false;
+    keys.forEach(key => key.disabled = true); //Disable keys while comp is playing
     //Generate next note in the sequence
+    const nextNote = notes[Math.floor(Math.random() * notes.length)];
+    compSequence.push(nextNote);
     //Play the sequence
+    compSequence.forEach((note, index) => {
+        setTimeout (() => {
+            playSound(note);
+        }, 1000);
+    });
     //set userIsPlaying back to true
+    setTimeout(() => {
+        keys.forEach(key => key.disabled = false);
+        userIsPlaying = true;
+    }, compSequence.length * 1000); //enable keys after enough time for all comp notes have played
 }
 
 function keyClick(event) {
@@ -84,11 +74,9 @@ function keyClick(event) {
 
 
 
-
-
 /*----------- Event Listeners ----------*/
-// document.querySelector('.piano').addEventListener()
+document.querySelector('.piano').addEventListener('click', keyClick);
 
-// const audio = new Audio(`../audio/C.mp3`);
+// const audio = new Audio(`../audio/${note}.mp3`);
 //     audio.volume = 3;
 //     audio.play();
