@@ -117,5 +117,5 @@ function keyClick(event) {
     
     resetButton.addEventListener('click', startGame);
 
-    startGame();
+    //startGame();
 });
