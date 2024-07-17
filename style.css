@@ -21,10 +21,13 @@ body {
     padding: 20px;
     border: 2px grey;
     border-radius: 10px;
-    width: 100vw;
+    width: 80%;
     max-width: 800px;
     box-shadow: 0 0 10px black;
     margin-bottom: 100px;
+    align-items: center;
+    /* display: flex; */
+    flex: column;
 }
 
 h1 {
@@ -95,8 +98,23 @@ h1 {
 }
 
 #reset {
-    background-color: wheat;
+    background-color: lightcoral;
     position: absolute;
     bottom: 45px;
     left: 45px;
+}
+
+.cat-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+#cat-image {
+    width: 200px;
+    height: auto;
+    opacity: 1;
 }
