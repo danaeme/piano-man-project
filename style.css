@@ -9,6 +9,10 @@ body {
     align-items: center;
     margin: 0 auto;
     position: relative;
+    background-image: url(./images/colorfulbackgroundartmusic.jpg);
+    background-size: cover;
+    background-position: center;
+    opacity: 95%;
 }
 
 .box {
@@ -35,6 +39,7 @@ h1 {
     padding: 10px 20px;
     border: 2px solid black;
     border-radius: 10px;
+    background-color: wheat;
 }
 
 .message {
@@ -83,14 +88,14 @@ h1 {
 }
 
 #start {
-    background-color: white;
+    background-color: wheat;
     position: absolute;
     bottom: 45px;
     right: 45px;
 }
 
 #reset {
-    background-color: white;
+    background-color: wheat;
     position: absolute;
     bottom: 45px;
     left: 45px;
