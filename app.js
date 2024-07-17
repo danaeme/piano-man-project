@@ -15,6 +15,7 @@ const resetButton = document.querySelector('#reset');
 const scoreDisplay = document.querySelector('.score-display');
 const gameOverMessage = document.querySelector('#game-over');
 const youWinMessage = document.querySelector('#you-win');
+const catImage = document.querySelector('#cat-image');
 
 /*-------------- Functions -------------*/
 function startGame() {
@@ -28,6 +29,7 @@ function startGame() {
     startButton.disabled = false;
     resetButton.disabled = true; 
    // console.log('Initializing game..');
+   catImage.style.opacity = '.5';
 }
 
 function updateScore() {
@@ -60,6 +62,7 @@ function computerTurn() {
     //Generate next note in the sequence
     const nextNote = notes[Math.floor(Math.random() * notes.length)];
     compSequence.push(nextNote);
+    catImage.style.opacity = '1';
     //Play the sequence
     compSequence.forEach((note, index) => {
         setTimeout (() => {
@@ -70,6 +73,7 @@ function computerTurn() {
     setTimeout(() => {
         keys.forEach(key => key.disabled = false);
         userIsPlaying = true;
+        catImage.style.opacity = '.5';
     }, compSequence.length * 1000); //enable keys after enough time for all comp notes have played
 }
 
@@ -88,6 +92,7 @@ function keyClick(event) {
             gameOverMessage.style.display = 'block';
             keys.forEach(key => key.disabled = true);
             userIsPlaying = false;
+            return;
         }
         else if (userSequence.length === compSequence.length) {
             score++;
