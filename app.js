@@ -6,7 +6,7 @@ const notes = ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C2'];
 let compSequence = [];
 let userSequence = [];
 let score = 0;
-let userIsPlaying = false; //if user turn is in progress
+let userIsPlaying = false; 
 
 /*----- Cached Element References  -----*/
 const keys = Array.from(document.querySelectorAll('.key')); 
@@ -22,9 +22,8 @@ const crowdImage = document.querySelector('#crowd-image');
 const stageLights = document.querySelector('#stage-lights');
 const tomatoSplat1 = document.querySelector('#tomatosplat-left');
 const tomatoSplat2 = document.querySelector('#tomatosplat-right');
-const tomatoSplat3 = document.querySelector('#tomatosplat-bot');
-const tomatoSplat4 = document.querySelector('#tomatosplat-top');
 const rulesText = document.querySelector('#rules');
+const angryCrowd = document.querySelector('#angry-crowd');
 
 /*-------------- Functions -------------*/
 function startGame() {
@@ -37,16 +36,14 @@ function startGame() {
     userIsPlaying = false;
     startButton.disabled = false;
     resetButton.disabled = true; 
-   // console.log('Initializing game..');
    dogPreparing.style.display = 'block';
    dogPlaying.style.display = 'none';
    dogSinging.style.display = 'none';
    crowdImage.style.display = 'none';
+   angryCrowd.style.display = 'none';
    stageLights.style.display = 'none';
    tomatoSplat1.style.display = 'none';
    tomatoSplat2.style.display = 'none';
-   tomatoSplat3.style.display = 'none';
-   tomatoSplat4.style.display = 'none';
    rulesText.style.display = 'block';
 }
 
@@ -104,14 +101,13 @@ function keyClick(event) {
         playSound(note);
         userSequence.push(note);
     
-        const noteIdx = userSequence.length - 1;
+        const noteIdx = userSequence.length - 1; //needed for 0 index array
     
         if (userSequence[noteIdx] !== compSequence[noteIdx]) {
             gameOverMessage.style.display = 'block';
             tomatoSplat1.style.display = 'block';
             tomatoSplat2.style.display = 'block';
-            tomatoSplat3.style.display = 'block';
-            tomatoSplat4.style.display = 'block';
+            angryCrowd.style.display = 'block';
             keys.forEach(key => key.disabled = true);
             userIsPlaying = false;
             dogPlaying.style.display = 'none';
