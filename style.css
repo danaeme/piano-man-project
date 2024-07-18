@@ -50,6 +50,15 @@ h1 {
     font-size: 20px;
     padding: 10px 20px;
     display: none;
+    font-weight: bold;
+}
+
+#you-win {
+    color: blue;
+}
+
+#game-over {
+    color: red;
 }
 
 .piano {
@@ -117,6 +126,16 @@ h1 {
     width: 200px;
     height: auto;
     opacity: 1;
+}
+
+#crowd-image {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    display: none;
+    z-index: -1;
 }
 /* 
 .message-bubble {

@@ -16,6 +16,7 @@ const scoreDisplay = document.querySelector('.score-display');
 const gameOverMessage = document.querySelector('#game-over');
 const youWinMessage = document.querySelector('#you-win');
 const catImage = document.querySelector('#cat-image');
+const crowdImage = document.querySelector('#crowd-image');
 
 /*-------------- Functions -------------*/
 function startGame() {
@@ -30,6 +31,7 @@ function startGame() {
     resetButton.disabled = true; 
    // console.log('Initializing game..');
    catImage.style.opacity = '.5';
+   crowdImage.style.display = 'none';
 }
 
 function updateScore() {
@@ -100,6 +102,7 @@ function keyClick(event) {
             if (score === 5) {
                 youWinMessage.style.display = 'block';
                 keys.forEach(key => key.disabled = true);
+                crowdImage.style.display = 'block';
                 return;
             }
             userSequence = [];
