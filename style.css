@@ -118,3 +118,24 @@ h1 {
     height: auto;
     opacity: 1;
 }
+/* 
+.message-bubble {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -50px;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 20px;
+    text-align: center;
+    z-index: 3;
+}
+
+#game-over {
+    left: 60px;
+}
+
+#you-win {
+    right: 60px;
+} */
