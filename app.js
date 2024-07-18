@@ -53,7 +53,7 @@ function showGameOverMessage() {
 }
 
 function playSound(note) {
-    const audio = new Audio(`Audio/${note}.mp3`);
+    const audio = new Audio(`audio/${note}.mp3`);
     audio.volume = 1;
     audio.play();
     //console.log(`Note played: ${note}`);
