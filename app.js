@@ -15,8 +15,13 @@ const resetButton = document.querySelector('#reset');
 const scoreDisplay = document.querySelector('.score-display');
 const gameOverMessage = document.querySelector('#game-over');
 const youWinMessage = document.querySelector('#you-win');
-const catImage = document.querySelector('#cat-image');
+const dogPreparing = document.querySelector('#dog-preparing');
+const dogPlaying = document.querySelector('#dog-playing');
+const dogSinging = document.querySelector('#dog-singing');
 const crowdImage = document.querySelector('#crowd-image');
+const stageLights = document.querySelector('#stage-lights');
+const tomatoSplat1 = document.querySelector('#tomatosplat-left');
+const tomatoSplat2 = document.querySelector('#tomatosplat-right');
 
 /*-------------- Functions -------------*/
 function startGame() {
@@ -30,8 +35,13 @@ function startGame() {
     startButton.disabled = false;
     resetButton.disabled = true; 
    // console.log('Initializing game..');
-   catImage.style.opacity = '.5';
+   dogPreparing.style.display = 'block';
+   dogPlaying.style.display = 'none';
+   dogSinging.style.display = 'none';
    crowdImage.style.display = 'none';
+   stageLights.style.display = 'none';
+   tomatoSplat1.style.display = 'none';
+   tomatoSplat2.style.display = 'none';
 }
 
 function updateScore() {
@@ -43,7 +53,7 @@ function showGameOverMessage() {
 }
 
 function playSound(note) {
-    const audio = new Audio(`../Audio/${note}.mp3`);
+    const audio = new Audio(`Audio/${note}.mp3`);
     audio.volume = 1;
     audio.play();
     //console.log(`Note played: ${note}`);
@@ -64,7 +74,9 @@ function computerTurn() {
     //Generate next note in the sequence
     const nextNote = notes[Math.floor(Math.random() * notes.length)];
     compSequence.push(nextNote);
-    catImage.style.opacity = '1';
+    dogPlaying.style.display = 'block';
+    dogPreparing.style.display = 'none';
+    dogSinging.style.display = 'none';
     //Play the sequence
     compSequence.forEach((note, index) => {
         setTimeout (() => {
@@ -75,8 +87,8 @@ function computerTurn() {
     setTimeout(() => {
         keys.forEach(key => key.disabled = false);
         userIsPlaying = true;
-        catImage.style.opacity = '.5';
     }, compSequence.length * 1000); //enable keys after enough time for all comp notes have played
+    dogPlaying.style.opacity = 1;
 }
 
 function keyClick(event) {
@@ -84,6 +96,7 @@ function keyClick(event) {
         return;
     }   
     else {
+        dogPlaying.style.opacity = .5;
         const note = event.target.textContent.trim(); //trim to get 'note' from text
         playSound(note);
         userSequence.push(note);
@@ -92,8 +105,13 @@ function keyClick(event) {
     
         if (userSequence[noteIdx] !== compSequence[noteIdx]) {
             gameOverMessage.style.display = 'block';
+            tomatoSplat1.style.display = 'block';
+            tomatoSplat2.style.display = 'block';
             keys.forEach(key => key.disabled = true);
             userIsPlaying = false;
+            dogPlaying.style.display = 'none';
+            dogPreparing.style.display = 'none';
+            dogSinging.style.display = 'block';
             return;
         }
         else if (userSequence.length === compSequence.length) {
@@ -103,6 +121,10 @@ function keyClick(event) {
                 youWinMessage.style.display = 'block';
                 keys.forEach(key => key.disabled = true);
                 crowdImage.style.display = 'block';
+                dogPlaying.style.display = 'none';
+                dogPreparing.style.display = 'none';
+                dogSinging.style.display = 'block';
+                stageLights.style.display = 'block';
                 return;
             }
             userSequence = [];
@@ -124,6 +146,4 @@ function keyClick(event) {
     });
     
     resetButton.addEventListener('click', startGame);
-
-    //startGame();
 });
