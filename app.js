@@ -22,6 +22,7 @@ const crowdImage = document.querySelector('#crowd-image');
 const stageLights = document.querySelector('#stage-lights');
 const tomatoSplat1 = document.querySelector('#tomatosplat-left');
 const tomatoSplat2 = document.querySelector('#tomatosplat-right');
+const rulesText = document.querySelector('#rules');
 
 /*-------------- Functions -------------*/
 function startGame() {
@@ -42,6 +43,7 @@ function startGame() {
    stageLights.style.display = 'none';
    tomatoSplat1.style.display = 'none';
    tomatoSplat2.style.display = 'none';
+   rulesText.style.display = 'block';
 }
 
 function updateScore() {
@@ -77,6 +79,7 @@ function computerTurn() {
     dogPlaying.style.display = 'block';
     dogPreparing.style.display = 'none';
     dogSinging.style.display = 'none';
+    rulesText.style.display = 'none';
     //Play the sequence
     compSequence.forEach((note, index) => {
         setTimeout (() => {

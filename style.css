@@ -172,24 +172,17 @@ h1 {
     top: 0%;
     right: 250px;
 }
-/* 
-.message-bubble {
-    display: none;
+
+.rules {
     position: absolute;
-    background-color: white;
-    top: -50px;
-    border: 2px solid black;
-    border-radius: 10px;
-    padding: 10px;
-    font-size: 20px;
+    bottom: 100px;
+    width: auto;
+    max-width: 80%;
     text-align: center;
-    z-index: 3;
+    font-size: 13px;
+    color: black;
+    font-weight: bold;
+    padding: 10px 20px;
+    background-color: lightgray;
+    border-radius: 10px;
 }
-
-#game-over {
-    left: 60px;
-}
-
-#you-win {
-    right: 60px;
-} */
