@@ -22,6 +22,8 @@ const crowdImage = document.querySelector('#crowd-image');
 const stageLights = document.querySelector('#stage-lights');
 const tomatoSplat1 = document.querySelector('#tomatosplat-left');
 const tomatoSplat2 = document.querySelector('#tomatosplat-right');
+const tomatoSplat3 = document.querySelector('#tomatosplat-bot');
+const tomatoSplat4 = document.querySelector('#tomatosplat-top');
 const rulesText = document.querySelector('#rules');
 
 /*-------------- Functions -------------*/
@@ -43,15 +45,13 @@ function startGame() {
    stageLights.style.display = 'none';
    tomatoSplat1.style.display = 'none';
    tomatoSplat2.style.display = 'none';
+   tomatoSplat3.style.display = 'none';
+   tomatoSplat4.style.display = 'none';
    rulesText.style.display = 'block';
 }
 
 function updateScore() {
     scoreDisplay.textContent = `Score: ${score}/5`
-}
-
-function showGameOverMessage() {
-    gameOverMessage.style.display = 'block';
 }
 
 function playSound(note) {
@@ -110,6 +110,8 @@ function keyClick(event) {
             gameOverMessage.style.display = 'block';
             tomatoSplat1.style.display = 'block';
             tomatoSplat2.style.display = 'block';
+            tomatoSplat3.style.display = 'block';
+            tomatoSplat4.style.display = 'block';
             keys.forEach(key => key.disabled = true);
             userIsPlaying = false;
             dogPlaying.style.display = 'none';

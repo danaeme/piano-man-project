@@ -169,8 +169,18 @@ h1 {
 }
 
 #tomatosplat-right {
-    top: 0%;
+    top: -25%;
     right: 250px;
+}
+
+#tomatosplat-top {
+    left: 35%;
+    top: -45%;
+}
+
+#tomatosplat-bot {
+    right: 30%;
+    top: -65%;
 }
 
 .rules {
