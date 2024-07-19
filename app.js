@@ -1,14 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
-/*-------------- Constants -------------*/
+
 const notes = ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C2'];
 
-/*---------- Variables (state) ---------*/
 let compSequence = [];
 let userSequence = [];
 let score = 0;
 let userIsPlaying = false; 
 
-/*----- Cached Element References  -----*/
 const keys = Array.from(document.querySelectorAll('.key')); 
 const startButton = document.querySelector('#start');
 const resetButton = document.querySelector('#reset');
@@ -25,7 +23,6 @@ const tomatoSplat2 = document.querySelector('#tomatosplat-right');
 const rulesText = document.querySelector('#rules');
 const angryCrowd = document.querySelector('#angry-crowd');
 
-/*-------------- Functions -------------*/
 function startGame() {
     compSequence = [];
     userSequence = [];
@@ -55,11 +52,9 @@ function playSound(note) {
     const audio = new Audio(`audio/${note}.mp3`);
     audio.volume = 1;
     audio.play();
-    //console.log(`Note played: ${note}`);
 }
 
 function flashKey(note) {
-    //function to make key flash. 
     const key = keys.find(key => key.textContent === note);
     if (key) {
         key.classList.add('active');
@@ -69,15 +64,14 @@ function flashKey(note) {
 
 function computerTurn() {
     userIsPlaying = false;
-    keys.forEach(key => key.disabled = true); //Disable keys while comp is playing
-    //Generate next note in the sequence
+    keys.forEach(key => key.disabled = true); 
     const nextNote = notes[Math.floor(Math.random() * notes.length)];
     compSequence.push(nextNote);
     dogPlaying.style.display = 'block';
     dogPreparing.style.display = 'none';
     dogSinging.style.display = 'none';
     rulesText.style.display = 'none';
-    //Play the sequence
+
     compSequence.forEach((note, index) => {
         setTimeout (() => {
             playSound(note);
@@ -87,7 +81,7 @@ function computerTurn() {
     setTimeout(() => {
         keys.forEach(key => key.disabled = false);
         userIsPlaying = true;
-    }, compSequence.length * 1000); //enable keys after enough time for all comp notes have played
+    }, compSequence.length * 1000);
     dogPlaying.style.opacity = 1;
 }
 
@@ -97,11 +91,11 @@ function keyClick(event) {
     }   
     else {
         dogPlaying.style.opacity = .5;
-        const note = event.target.textContent.trim(); //trim to get 'note' from text
+        const note = event.target.textContent.trim(); 
         playSound(note);
         userSequence.push(note);
     
-        const noteIdx = userSequence.length - 1; //needed for 0 index array
+        const noteIdx = userSequence.length - 1; 
     
         if (userSequence[noteIdx] !== compSequence[noteIdx]) {
             gameOverMessage.style.display = 'block';
@@ -135,8 +129,6 @@ function keyClick(event) {
 }
 
 
-
-/*----------- Event Listeners ----------*/
     
     document.querySelector('.piano').addEventListener('click', keyClick);
     
