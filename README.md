@@ -21,7 +21,7 @@ Play game: https://danaeme.github.io/piano-man-project/
 
 # Next Steps
 
-- Hard mode: add a button that can change the parameters of the game instantly (including mid-game) - increase max score, randomize tempo of the notes played, adding a timer for users to play their sequence.
+- Hard mode: add a button that can change the parameters of the game instantly - increase max score, randomize tempo of the notes played, adding a timer for users to play their sequence.
 - Checkpoint system, set progress every 5-10 rounds. 
 - Styling to aking it more 'musical' - a 4/4 metronome, visually improving the keyboard to add black keys.
 
